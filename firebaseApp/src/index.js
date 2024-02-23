@@ -3,14 +3,15 @@ import { getFirestore, getDocs, collection, setDoc, doc, deleteDoc,query,where, 
 import { getStorage, ref, uploadBytes, getDownloadURL, deleteObject  } from 'firebase/storage';
 
 
-const firebaseApp = initializeApp({
-    apiKey: "AIzaSyCUpRyB8BnecGiqvrBxTgAA9pSnIY8LzVc",
-    authDomain: "splendid-planet-407200.firebaseapp.com",
-    projectId: "splendid-planet-407200",
-    storageBucket: "splendid-planet-407200.appspot.com",
-    messagingSenderId: "261447011749",
-    appId: "1:261447011749:web:f31f4ae8553817d767ac4c"
-})
+/*const firebaseApp = initializeApp({
+    Se debe colocar id del proyecto
+    apiKey: 
+    authDomain: 
+    projectId: 
+    storageBucket: 
+    messagingSenderId: 
+    appId: 
+})*/
 
 const db = getFirestore(firebaseApp);
 const storage = getStorage();
