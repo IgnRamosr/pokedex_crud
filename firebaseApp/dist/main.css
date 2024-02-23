@@ -1,0 +1,406 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f5f5;
+}
+header {
+    padding: 4%;
+    position: fixed;
+    top: 0;
+    justify-content: flex-start;
+    display: flex;
+    width: 100%;
+    z-index: 1; /* Ajusta el índice Z según sea necesario para que esté por encima del contenido */
+}
+
+.pokedex_img {
+    display: flex;
+    position: fixed;
+    top: 0;
+    height: 15vh;
+    width: 30vw;
+    border: none; 
+    outline: none;
+}
+
+.pokedex-card {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* Sombra predeterminada */
+    transition: box-shadow 0.3s ease; /* Agrega una transición suave */
+}
+
+.fuego-card:hover {
+    box-shadow: 0 0 10px rgba(255, 69, 0, 0.5); /* Naranja */
+}
+
+.agua-card:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 255, 0.5); /* Azul */
+}
+
+.planta-card:hover {
+    box-shadow: 0 0 10px rgba(0, 128, 0, 0.5); /* Verde */
+}
+.bicho-card:hover {
+    box-shadow: 0 0 10px rgba(139, 69, 19, 0.5); /* Marrón rojizo */
+}
+
+.dragon-card:hover {
+    box-shadow: 0 0 10px rgba(138, 43, 226, 0.5); /* Azul violeta */
+}
+
+.electrico-card:hover {
+    box-shadow: 0 0 10px rgba(255, 223, 0, 0.5); /* Amarillo */
+}
+
+.hada-card:hover {
+    box-shadow: 0 0 10px rgba(255, 182, 193, 0.5); /* Rosa claro */
+}
+
+.lucha-card:hover {
+    box-shadow: 0 0 10px rgba(205, 92, 92, 0.5); /* Marrón claro */
+}
+
+.volador-card:hover {
+    box-shadow: 0 0 10px rgba(70, 130, 180, 0.5); /* Azul acero */
+}
+
+.fantasma-card:hover {
+    box-shadow: 0 0 10px rgba(128, 0, 128, 0.5); /* Púrpura oscuro */
+}
+
+.tierra-card:hover {
+    box-shadow: 0 0 10px rgba(139, 69, 19, 0.5); /* Marrón rojizo */
+}
+
+.hielo-card:hover {
+    box-shadow: 0 0 10px rgba(173, 216, 230, 0.5); /* Azul claro */
+}
+
+.normal-card:hover {
+    box-shadow: 0 0 10px rgba(169, 169, 169, 0.5); /* Gris */
+}
+
+.veneno-card:hover {
+    box-shadow: 0 0 10px rgba(186, 85, 211, 0.5); /* Violeta */
+}
+
+.psiquico-card:hover {
+    box-shadow: 0 0 10px rgba(255, 105, 180, 0.5); /* Rosa */
+}
+
+.roca-card:hover {
+    box-shadow: 0 0 10px rgba(169, 169, 169, 0.5); /* Gris */
+}
+
+.acero-card:hover {
+    box-shadow: 0 0 10px rgba(192, 192, 192, 0.5); /* Plata */
+}
+
+/* Estilo para el fondo oscuro */
+.fondo-oscuro {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo negro semi-transparente */
+    z-index: 999 !important;  /* Asegura que esté por debajo del formulario */
+    display: none; /* Inicialmente oculto */
+}
+
+/* Estilos para el contenedor de la pokebola y el div de agregar Pokémon */
+#pokeball-container {
+    position: fixed;
+    left: 50px;
+    bottom: 30px;
+    z-index: 998;
+    padding: 10vh;
+    overflow: hidden;
+}
+
+/* Estilos para la imagen de la pokebola */
+.pokeball-img {
+    width: 150px;
+    height: auto;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    border: none;
+    z-index: 0;
+}
+
+/* Estilos para la animación hover de la pokebola */
+.pokeball-img:hover {
+    transform: translateY(-5px);
+    filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.3));
+}
+
+.agregar-pokemon-div {
+    font-family: 'Pokemon Solid', cursive; /* Reemplaza 'Pokemon Solid' con la fuente que elijas */
+    background-color: #FF0000; /* Reemplaza #FF0000 con el código de color que prefieras */
+    position: fixed;
+    transform: translate(-50%, -50%); /* Centrar el div exactamente sobre la imagen */
+    padding: 8px;
+    border-radius: 5px;
+    bottom: 280px;
+    left: 220px;
+    font-size: 14px;
+    transition: opacity 0.3s ease; /* Transición suave para la opacidad */
+    opacity: 0; /* Inicialmente invisible */
+}
+
+
+/* Cambiar la opacidad al hacer hover sobre la imagen */
+.pokeball-img:hover + .agregar-pokemon-div {
+    opacity: 1; /* Hacer visible al hacer hover sobre la imagen */
+}
+
+
+.pokedex-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;  /* Espacio entre las tarjetas */
+}
+
+.pokedex-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    width: 300px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    margin-bottom: 20px;  /* Espacio entre las tarjetas */
+}
+
+.pokedex-card:hover {
+    transform: scale(1.05);
+}
+
+
+/* Estilo para el formulario */
+.agregar-form {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) translateY(-100%); /* Inicialmente, coloca el formulario fuera de la pantalla */
+    z-index: 1000;
+    background-color: #ADD8E6; /* Color relacionado con la temática de Pokémon */
+    padding: 30px; /* Aumenta el espacio de relleno */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Sombra suave */
+    transition: transform 0.5s ease; /* Transición suave para la animación */
+    height: 80%; /* Ajusta la altura según tus necesidades */
+    width: 40%;
+}
+
+
+
+.agregar-form.mostrar {
+    transform: translate(-50%, -50%) translateY(0); /* Muestra el formulario moviéndolo hacia abajo */
+}
+
+/* Estilos para los labels */
+.form-input label {
+    display: block;
+    margin-bottom: 5px; /* Ajusta el margen inferior según tus preferencias */
+}
+
+/* Estilos para los inputs y selects del formulario */
+.agregar-form input,
+.agregar-form select {
+    width: 80%;
+    padding: 10px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Estilos para los botones del formulario */
+.agregar-form button {
+    background-color: #98FB98;
+    color: #000;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+.agregar-form button:hover {
+    background-color: #FFA500; /* Cambia el color al pasar el mouse */
+}
+
+/* Estilo para la cabecera del formulario */
+.form-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Estilo para el cuerpo del formulario */
+.form-body {
+    margin-bottom: 10%;
+    margin-top: 5%;
+}
+
+.form-body label{
+    font-size: 20px;
+}
+
+.form-input{
+    margin-top: 3%;
+    position: relative;
+}
+
+/* Estilos para el footer */
+.form-footer {
+    display: flex;
+    justify-content: flex-end;
+    padding-bottom: 5%;
+    border-style:ridge ;
+}
+.form-footer button{
+    margin-top: 20%;
+    text-align: center;
+    width: 25%;/* Ajusta el ancho según tus necesidades */
+    max-height: 15%;
+}
+
+#vistaPrevia {
+    width: 20% ; /* Ajusta el ancho */
+    height: 20%; /* Ajusta la altura */
+    margin-top: 5%;
+    margin-right: 20%;
+    border: none;
+    max-width: 140px;
+    max-height: 140px;
+}
+
+
+img {
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid #ccc;
+}
+
+.info {
+    padding: 15px;
+}
+
+h2 {
+    margin: 0;
+    font-size: 1.5em;
+}
+
+p {
+    margin: 8px 0;
+}
+
+.actions {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+}
+
+button {
+    padding: 8px 12px;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.edit-btn {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.delete-btn {
+    background-color: #f44336;
+    color: white;
+}
+
+.editar-form{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) translateY(-100%); /* Inicialmente, coloca el formulario fuera de la pantalla */
+    z-index: 1000;
+    background-color: #ADD8E6; /* Color relacionado con la temática de Pokémon */
+    padding: 30px; /* Aumenta el espacio de relleno */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Sombra suave */
+    transition: transform 0.5s ease; /* Transición suave para la animación */
+    height: 80%; /* Ajusta la altura según tus necesidades */
+    width: 40%;
+}
+
+.editar-form.mostrar {
+    transform: translate(-50%, -50%) translateY(0); /* Muestra el formulario moviéndolo hacia abajo */
+}
+
+#imagen-preview{
+    width: 20% ; /* Ajusta el ancho */
+    height: 20%; /* Ajusta la altura */
+    margin-top: 5%;
+    margin-right: 20%;
+    border: none;
+    max-width: 140px;
+    max-height: 140px;
+}
+
+/* Estilos para los inputs y selects del formulario */
+.editar-form input,
+.editar-form select {
+    width: 80%;
+    padding: 10px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Estilos para los botones del formulario */
+.editar-form button {
+    background-color: #98FB98;
+    color: #000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+.editar-form button:hover {
+    background-color: #FFA500; /* Cambia el color al pasar el mouse */
+}
+/* Estilo del modal para eliminar*/
+.modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    animation: scaleUp 0.3s ease-out;
+    z-index: 1001;
+}
+
+@keyframes scaleUp {
+    from {
+        transform: translate(-50%, -50%) scale(0);
+    }
+    to {
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
